@@ -1,37 +1,37 @@
-## Quick start
+## Démarrage rapide
 
-> UNZIP the sources or clone the private repository. After getting the code, open a terminal and navigate to the working directory, with product source code.
+> DÉZIPPEZ les sources ou clonez le dépôt privé. Une fois le code obtenu, ouvrez un terminal et naviguez vers le répertoire de travail contenant le code source du produit.
 
 ```bash
-$ # Get the code
+$ # Récupérer le code
 $ git clone https://github.com/itsmyjob12/PrjParcAuto1.git
 $ cd argon-dashboard-django
 $
-$ # Virtualenv modules installation (Unix based systems)
+$ # Installation des modules Virtualenv (systèmes Unix)
 $ virtualenv env
 $ source env/bin/activate
 $
-$ # Virtualenv modules installation (Windows based systems)
+$ # Installation des modules Virtualenv (systèmes Windows)
 $ # virtualenv env
 $ # .\env\Scripts\activate
 $
-$ # Install modules - SQLite Storage
-$ pip3 install -r requirements.txt
+$ # Installer les modules - Stockage SQLite
+$ pip install -r requirements.txt
 $
-$ # Create tables
+$ # Créer les tables
 $ python manage.py makemigrations
 $ python manage.py migrate
 $
-$ # Start the application (development mode)
+$ # Démarrer l'application (mode développement)
 $ python manage.py runserver # default port 8000
 $
-$ # Start the app - custom port
-$ # python manage.py runserver 0.0.0.0:<your_port>
+$ # Démarrer l'application - port personnalisé
+$ # python manage.py runserver 0.0.0.0:<votre_port>
 $
-$ # Access the web app in browser: http://127.0.0.1:8000/
+$ # Accéder à l'application Web dans le navigateur : http://127.0.0.1:8000/
 ```
 
-> Note: To use the app, please access the registration page and create a new user. After authentication, the app will unlock the private pages.
+> Remarque : Pour utiliser l'application, veuillez accéder à la page d'inscription et créer un nouvel utilisateur. Une fois authentifié, l'application déverrouillera les pages privées.
 
 
 ## Code-base structure
@@ -39,51 +39,51 @@ $ # Access the web app in browser: http://127.0.0.1:8000/
 The project is coded using a simple and intuitive structure presented bellow:
 
 ```bash
-< PROJECT ROOT >
+< RACINE_DU_PROJET >
    |
-   |-- core/                               # Implements app configuration
-   |    |-- settings.py                    # Defines Global Settings
-   |    |-- wsgi.py                        # Start the app in production
-   |    |-- urls.py                        # Define URLs served by all apps/nodes
+   |-- core/                       # Implémente la configuration de l'application
+   |    |-- settings.py              # Définit les paramètres globaux
+   |    |-- wsgi.py                    # Démarre l'application en production
+   |    |-- urls.py                    # Définit les URL servies par toutes les applications/nœuds
    |
    |-- apps/
    |    |
-   |    |-- home/                          # A simple app that serve HTML files
-   |    |    |-- views.py                  # Serve HTML pages for authenticated users
-   |    |    |-- urls.py                   # Define some super simple routes  
+   |    |-- home/                       # Une application simple qui sert des fichiers HTML
+   |    |    |-- views.py                  # Sert des pages HTML aux utilisateurs authentifiés
+   |    |    |-- urls.py                   # Définit des routes très simples  
    |    |
-   |    |-- authentication/                # Handles auth routes (login and register)
-   |    |    |-- urls.py                   # Define authentication routes  
-   |    |    |-- views.py                  # Handles login and registration  
-   |    |    |-- forms.py                  # Define auth forms (login and register) 
+   |    |-- authentication/           # Gère les routes d'authentification (connexion et inscription)
+   |    |    |-- urls.py                   # Définit les routes d'authentification  
+   |    |    |-- views.py                  # Gère la connexion et l'inscription  
+   |    |    |-- forms.py                  # Définit les formulaires d'authentification (connexion et inscription) 
    |    |
    |    |-- static/
-   |    |    |-- <css, JS, images>         # CSS files, Javascripts files
+   |    |    |-- <css, JS, images>         # Fichiers CSS, fichiers JavaScript
    |    |
-   |    |-- templates/                     # Templates used to render pages
-   |         |-- includes/                 # HTML chunks and components
-   |         |    |-- navigation.html      # Top menu component
-   |         |    |-- sidebar.html         # Sidebar component
-   |         |    |-- footer.html          # App Footer
-   |         |    |-- scripts.html         # Scripts common to all pages
+   |    |-- templates/                     # Modèles utilisés pour le rendu des pages
+   |         |-- includes/                 # Morceaux et composants HTML
+   |         |    |-- navigation.html      # Composant du menu supérieur
+   |         |    |-- sidebar.html         # Composant de la barre latérale
+   |         |    |-- footer.html          # Pied de page de l'application
+   |         |    |-- scripts.html         # Scripts communs à toutes les pages
    |         |
-   |         |-- layouts/                   # Master pages
-   |         |    |-- base-fullscreen.html  # Used by Authentication pages
-   |         |    |-- base.html             # Used by common pages
+   |         |-- layouts/                   # Pages maîtresses
+   |         |    |-- base-fullscreen.html  # Utilisé par les pages d'authentification (Used by Authentication pages)
+   |         |    |-- base.html             # Utilisé par les pages courantes (Used by common pages)
    |         |
-   |         |-- accounts/                  # Authentication pages
-   |         |    |-- login.html            # Login page
-   |         |    |-- register.html         # Register page
+   |         |-- accounts/                  # Pages d'authentification (Authentication pages)
+   |         |    |-- login.html            # Page de connexion (Login page)
+   |         |    |-- register.html         # Page d'inscription (Register page)
    |         |
-   |         |-- home/                      # UI Kit Pages
-   |              |-- index.html            # Index page
-   |              |-- 404-page.html         # 404 page
-   |              |-- *.html                # All other pages
+   |         |-- home/                      # Pages du kit d'interface utilisateur (UI Kit Pages)
+   |              |-- index.html            # Page d'accueil (Index page)
+   |              |-- 404-page.html         # Page 404 (404 page)
+   |              |-- *.html                # Toutes les autres pages (All other pages)
    |
-   |-- requirements.txt                     # Development modules - SQLite storage
+   |-- requirements.txt                     # Modules de développement - Stockage SQLite (Development modules - SQLite storage)
    |
-   |-- .env                                 # Inject Configuration via Environment
-   |-- manage.py                            # Start the app - Django default start script
+   |-- .env                                 # Injecter la configuration via l'environnement (Inject Configuration via Environment)
+   |-- manage.py                            # Démarrer l'application - Script de démarrage par défaut de Django (Start the app - Django default start script)
    |
    |-- ************************************************************************
 ```
