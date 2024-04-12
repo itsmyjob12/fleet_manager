@@ -1,3 +1,10 @@
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap Bundle JS (inclut Popper) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
+
 <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
   <div class="scrollbar-inner">
     <!-- Brand -->
@@ -42,16 +49,64 @@
               <span class="nav-link-text">Tables</span>
             </a>
           </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <i class="fa fa-car text-primary" aria-hidden="true"></i>
+              Véhicules
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="/chauffeurs"> <i class="fa fa-truck" aria-hidden="true"></i> Gérer Les
+                  Véhicules</a></li>
+              <li><a class="dropdown-item" href="/chauffeurs"> <i class="fa fa-map-marker" aria-hidden="true"></i>
+                  Track Véhicules</a></li>
+              <li><a class="dropdown-item" href="/icons.html"> <i class="fa fa-address-book"
+                    aria-hidden="true"></i>Clients</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <i class="fa fa-users text-orange" aria-hidden="true"></i>
+              Utilisateurs
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="/chauffeurs.html"> <i class="fa fa-address-card"
+                    aria-hidden="true"></i>Chauffeurs</a></li>
+              <li><a class="dropdown-item" href="/gestionnaire.html"> <i class="fa fa-address-card"
+                    aria-hidden="true"></i>Utlisateur (Gestionnaire)</a></li>
+              <li><a class="dropdown-item" href="/clients.html"> <i class="fa fa-address-book"
+                    aria-hidden="true"></i>Clients</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'icons' in segment %} active {% endif %}" href="/maintenance.html">
+              <i class="fa fa-wrench" aria-hidden="true"></i>
+              <span class="nav-link-text">Maintenance</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'icons' in segment %} active {% endif %}" href="/rapports.html">
+              <i class="fa fa-sticky-note" aria-hidden="true"></i>
+              <span class="nav-link-text">Rapports</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'icons' in segment %} active {% endif %}" href="/carburant.html">
+              <i class="fa fa-filter" aria-hidden="true"></i>
+              <span class="nav-link-text">Carburant</span>
+            </a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="/login.html">
               <i class="ni ni-key-25 text-info"></i>
-              <span class="nav-link-text">Login (template)</span>
+              <span class="nav-link-text">Login</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/register.html">
               <i class="ni ni-circle-08 text-pink"></i>
-              <span class="nav-link-text">Register (template)</span>
+              <span class="nav-link-text">Register</span>
             </a>
           </li>
 
