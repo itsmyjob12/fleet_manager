@@ -17,3 +17,12 @@ class Chauffeur(models.Model):
         return f"{self.nom} {self.prenom}"
 
 
+class Véhicule(models.Model):
+    nom = models.CharField(max_length=100)
+    prenom = models.CharField(max_length=100)
+    email = models.EmailField()
+    telephone = models.CharField(max_length=15)
+    adresse = models.TextField()
+
+    def __str__(self):
+        return f"{self.nom} {self.prenom}"
