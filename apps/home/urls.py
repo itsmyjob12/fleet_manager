@@ -5,6 +5,7 @@ Copyright (c) 2019 - present AppSeed.us
 
 from django.urls import path, re_path
 from apps.home import views
+from .views import *
 
 urlpatterns = [
 
@@ -15,7 +16,10 @@ urlpatterns = [
     re_path(r'^.*\.*', views.pages, name='pages'),
 
 
-    path('', views.chauffeurs, name='chauffeurs'),
-    path('<int:pk>/modifier/', views.modifier_chauffeur, name='modifier_chauffeur'),
-    path('<int:pk>/supprimer/', views.supprimer_chauffeur, name='supprimer_chauffeur'),
+    path('home/ajout/vehicule/', new_voiture, name='ajout_vehicule'),
+    path('home/liste/vehicules/', list_voitures, name='liste_voiture'),
+    path('home/profile/', profile, name='profile'),
+    path('home/list-mrque/', listView, name='listmrque'),
+    
+
 ]

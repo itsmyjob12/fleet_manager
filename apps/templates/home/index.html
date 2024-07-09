@@ -3,412 +3,561 @@
 {% block title %} Dashboard {% endblock title %}
 
 <!-- Specific CSS goes HERE -->
-{% block stylesheets %}{% endblock stylesheets %}
+{% block stylesheets %}
+<style>
+  body {
+    background: #f7f7f7 !important;
+    color: #333;
+    /* Couleur du texte pour contraste */
+  }
+
+  .section-title {
+    margin-left: 15px;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+  }
+
+  .profile-card {
+    background-color: #fff;
+    border: none;
+    border-radius: 10px;
+    color: #333;
+    /* Couleur du texte pour contraste */
+  }
+
+  .user-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+  }
+
+  .user-table th {
+    text-align: left;
+    padding: 10px 15px;
+    background-color: #e9ecef;
+    border-top: none;
+    border-bottom: 2px solid #dee2e6;
+    color: #333;
+    /* Couleur pour le texte de l'en-tête */
+  }
+
+  .user-table td {
+    padding: 15px;
+    vertical-align: middle;
+    background-color: #fff;
+    border-top: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+    color: #333;
+    /* Couleur pour le texte des cellules */
+  }
+
+  .user-info .d-flex {
+    align-items: center;
+  }
+
+  .user-info img {
+    border: 2px solid #dee2e6;
+  }
+
+  .status-info .d-flex {
+    margin-left: -60px;
+  }
+
+  .status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .status-dot.online {
+    background-color: #28a745;
+  }
+
+  .status-dot.offline {
+    background-color: #dc3545;
+  }
+
+  .ml-3 {
+    margin-left: 1rem !important;
+  }
+
+  .ml-2 {
+    margin-left: 0.5rem !important;
+  }
+
+  .header.bg-primary {
+    background-color: #f7f7f7 !important;
+  }
+
+  .header .h2,
+  .header .breadcrumb,
+  .header .btn {
+    color: #333;
+    /* Couleur du texte et des icônes dans l'en-tête */
+  }
+</style>
+{% endblock stylesheets %}
 
 {% block content %}
 
-    <!-- Header -->
-    <div class="header bg-primary pb-6">
-      <div class="container-fluid">
-        <div class="header-body">
-          <div class="row align-items-center py-4">
-            <div class="col-lg-6 col-7">
-              <h6 class="h2 text-white d-inline-block mb-0">Default</h6>
-              <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
-                <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-                  <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                  <li class="breadcrumb-item"><a href="#">Dashboards</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Default</li>
-                </ol>
-              </nav>
-            </div>
-            <div class="col-lg-6 col-5 text-right">
-              <a href="#" class="btn btn-sm btn-neutral">New</a>
-              <a href="#" class="btn btn-sm btn-neutral">Filters</a>
-            </div>
-          </div>
-          <!-- Card stats -->
-          <div class="row">
-            <div class="col-xl-3 col-md-6">
-              <div class="card card-stats">
-                <!-- Card body -->
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Total traffic</h5>
-                      <span class="h2 font-weight-bold mb-0">350,897</span>
-                    </div>
-                    <div class="col-auto">
-                      <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
-                        <i class="ni ni-active-40"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
-                  </p>
+<!-- Header -->
+<!-- Header -->
+<div class="header bg-primary pb-6">
+  <div class="container-fluid">
+    <div class="header-body">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+            <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+              <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+              <li class="breadcrumb-item"><a href="#">Dashboards</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Default</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+      <!-- Card stats -->
+      <div class="row">
+        <div class="col-xl-3 col-md-6">
+          <div class="card card-stats">
+            <!-- Card body -->
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Nombres de Conducteurs</h5>
+                  <span class="h2 font-weight-bold mb-0">{{ nombre_conducteur }}</span>
                 </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-              <div class="card card-stats">
-                <!-- Card body -->
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
-                      <span class="h2 font-weight-bold mb-0">2,356</span>
-                    </div>
-                    <div class="col-auto">
-                      <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
-                        <i class="ni ni-chart-pie-35"></i>
-                      </div>
-                    </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
+                    <i class="ni ni-active-40"></i>
                   </div>
-                  <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-              <div class="card card-stats">
-                <!-- Card body -->
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
-                      <span class="h2 font-weight-bold mb-0">924</span>
-                    </div>
-                    <div class="col-auto">
-                      <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
-                        <i class="ni ni-money-coins"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-              <div class="card card-stats">
-                <!-- Card body -->
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
-                      <span class="h2 font-weight-bold mb-0">49,65%</span>
-                    </div>
-                    <div class="col-auto">
-                      <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
-                        <i class="ni ni-chart-bar-32"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
-                  </p>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+          <div class="card card-stats">
+            <!-- Card body -->
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Nombres de Véhicules</h5>
+                  <span class="h2 font-weight-bold mb-0">{{ nombre_Voiture }}</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
+                    <i class="ni ni-chart-pie-35"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+          <div class="card card-stats">
+            <!-- Card body -->
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Nombre de Profile</h5>
+                  <span class="h2 font-weight-bold mb-0">{{ nombre_profile }}</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
+                    <i class="ni ni-money-coins"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-8">
+            <h3 class="section-title"><i class="fas fa-wrench header-icon"></i>Réparations en cours</h3>
+            <!-- Ajoutez ici votre tableau ou section de réparations -->
+            <div class="container-fluid">
+              <div class="card profile-card">
+                <div class="card-body">
+                  <table class="user-table table">
+                    <thead>
+                      <tr>
+                        <th>Véhicule</th>
+                        <th>Type de réparation</th>
+                        <th>Date de début</th>
+                        <th>Statut</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for repair in repairs %}
+                      <tr>
+                        <td>{{ repair.vehicle }}</td>
+                        <td>{{ repair.repair_type }}</td>
+                        <td>{{ repair.start_date }}</td>
+                        <td>{{ repair.status }}</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <!-- Diagramme circulaire de répartition des types d'entretien -->
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Répartition des types d'entretien</h5>
+                <canvas id="maintenanceChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-8">
+            <h3 class="section-title"><i class="fas fa-car header-icon"></i> Voitures en Temps Réel</h3>
+            <!-- Tableau des informations sur les voitures -->
+            <div class="container-fluid">
+              <div class="card profile-card">
+                <div class="card-body">
+                  <table id="realTimeCarsTable" class="car-table table">
+                    <thead>
+                      <tr>
+                        <th>Marque</th>
+                        <th>Modèle</th>
+                        <th>Année</th>
+                        <th>Statut</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- Les données seront ajoutées dynamiquement via JavaScript -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <!-- Exemple de carte d'une voiture en détail -->
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Détails de la Voiture</h5>
+                <ul id="carDetailsList" class="list-group">
+                  <!-- Les détails de la voiture seront mis à jour via JavaScript -->
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  // Fonction pour générer des données aléatoires de voitures
+  function generateRandomCars() {
+    var cars = [
+      { marque: 'Toyota', modele: 'Camry', annee: 2020, statut: 'Disponible' },
+      { marque: 'Honda', modele: 'Civic', annee: 2019, statut: 'En Maintenance' },
+      { marque: 'Ford', modele: 'Focus', annee: 2018, statut: 'Disponible' },
+      { marque: 'Chevrolet', modele: 'Malibu', annee: 2021, statut: 'En Réparation' }
+    ];
+
+    return cars;
+  }
+
+  // Fonction pour mettre à jour le tableau des voitures en temps réel
+  function updateRealTimeCarsTable() {
+    var cars = generateRandomCars();
+    var tableBody = document.getElementById('realTimeCarsTable').getElementsByTagName('tbody')[0];
+    tableBody.innerHTML = '';
+
+    cars.forEach(function (car) {
+      var row = `<tr>
+                  <td>${car.marque}</td>
+                  <td>${car.modele}</td>
+                  <td>${car.annee}</td>
+                  <td>${car.statut}</td>
+                </tr>`;
+      tableBody.insertAdjacentHTML('beforeend', row);
+    });
+
+    // Sélectionner la première voiture pour afficher les détails
+    if (cars.length > 0) {
+      showCarDetails(cars[0]);
+    }
+  }
+
+  // Fonction pour afficher les détails d'une voiture sélectionnée
+  function showCarDetails(car) {
+    var carDetailsList = document.getElementById('carDetailsList');
+    carDetailsList.innerHTML = '';
+
+    var details = [
+      `Marque: ${car.marque}`,
+      `Modèle: ${car.modele}`,
+      `Année: ${car.annee}`,
+      `Statut: ${car.statut}`
+    ];
+
+    details.forEach(function (detail) {
+      var listItem = `<li class="list-group-item">${detail}</li>`;
+      carDetailsList.insertAdjacentHTML('beforeend', listItem);
+    });
+  }
+
+  // Initialisation du tableau des voitures en temps réel
+  updateRealTimeCarsTable();
+  // Mettre à jour toutes les 5 secondes (à titre d'exemple)
+  setInterval(updateRealTimeCarsTable, 5000);
+</script>
+
+
+<script src="/static/assets/vendor/chart.js/dist/Chart.min.js"></script>
+<script>
+  // Données fictives pour l'exemple
+  var vehicleData = {
+    labels: ['Voitures', 'Camions', 'Fourgonnettes'],
+    datasets: [{
+      label: 'Nombre de véhicules',
+      backgroundColor: ['#3498db', '#2ecc71', '#f39c12'],
+      data: [25, 10, 15]  // Remplacez par vos données dynamiques
+    }]
+  };
+
+  // Configuration du graphique
+  var ctx = document.getElementById('vehicleChart').getContext('2d');
+  var vehicleChart = new Chart(ctx, {
+    type: 'bar',
+    data: vehicleData,
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+</script>
+
+<script>
+  // Données fictives pour l'exemple
+  var maintenanceData = {
+    labels: ['Révision', 'Réparation', 'Vidange', 'Pneus'],
+    datasets: [{
+      data: [30, 20, 25, 15],  // Remplacez par vos données dynamiques
+      backgroundColor: ['#e74c3c', '#3498db', '#f39c12', '#2ecc71'],
+    }]
+  };
+
+  // Configuration du graphique
+  var ctx = document.getElementById('maintenanceChart').getContext('2d');
+  var maintenanceChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: maintenanceData,
+    options: {
+      responsive: true,
+      legend: {
+        position: 'bottom',
+      },
+      tooltips: {
+        callbacks: {
+          label: function (tooltipItem, data) {
+            var dataset = data.datasets[tooltipItem.datasetIndex];
+            var total = dataset.data.reduce(function (previousValue, currentValue, currentIndex, array) {
+              return previousValue + currentValue;
+            });
+            var currentValue = dataset.data[tooltipItem.index];
+            var percentage = Math.floor(((currentValue / total) * 100) + 0.5);
+            return percentage + '%';
+          }
+        }
+      }
+    }
+  });
+</script>
+
+<style>
+  body {
+    background-color: #f5f5f5;
+  }
+
+  .section-title {
+    margin-left: 15px;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+    text-transform: uppercase;
+    font-weight: bold;
+    position: relative;
+  }
+
+  .section-title::after {
+    content: '';
+    width: 50px;
+    height: 3px;
+    background-color: #5e72e4;
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+  }
+
+  .profile-card {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    color: #172b4d;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .user-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+  }
+
+  .user-table th {
+    text-align: left;
+    padding: 10px 15px;
+    background-color: #e9ecef;
+    border-top: none;
+    border-bottom: 2px solid #dee2e6;
+  }
+
+  .user-table td {
+    padding: 15px;
+    vertical-align: middle;
+    background-color: #fff;
+    border-top: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+  }
+
+  .user-info .d-flex {
+    align-items: center;
+  }
+
+  .user-info img {
+    border: 2px solid #dee2e6;
+  }
+
+  .status-info .d-flex {
+    margin-left: -60px;
+  }
+
+  .status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .status-dot.online {
+    background-color: #28a745;
+  }
+
+  .status-dot.offline {
+    background-color: #dc3545;
+  }
+
+  .ml-3 {
+    margin-left: 1rem !important;
+  }
+
+  .ml-2 {
+    margin-left: 0.5rem !important;
+  }
+
+  .header-icon {
+    font-size: 2rem;
+    color: #5e72e4;
+    margin-right: 10px;
+  }
+
+  .profile-card .card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+</style>
+
+<!-- Page content -->
+<div class="row">
+  <div class="col-12">
+    <h3 class="section-title"><i class="fas fa-users header-icon"></i>Profils connectés</h3>
+    <div class="container-fluid">
+      <div class="card profile-card">
+        <div class="card-body">
+          <table class="user-table table">
+            <thead>
+              <tr>
+                <th>Utilisateurs</th>
+                <th>Statut</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for profile in connected_profiles %}
+              <tr>
+                <td class="user-info">
+                  <div class="d-flex align-items-center">
+                    <div>
+                      {% if profile.profile_image %}
+                      <img src="{{ profile.profile_image.url }}" alt="" width="35" height="35" class="rounded-circle">
+                      {% else %}
+                      <img src="" alt="" width="35" height="35" class="rounded-circle">
+                      {% endif %}
+                    </div>
+                    <div class="ml-3">
+                      <b>{{ profile.user.username }}</b>
+                      <br>
+                      <small>
+                        {% if profile.role == 1 %}
+                        Administrateur
+                        {% elif profile.role == 2 %}
+                        Manager
+                        {% elif profile.role == 3 %}
+                        Agent
+                        {% endif %}
+                      </small>
+                    </div>
+                  </div>
+                </td>
+                <td class="status-info">
+                  <div class="d-flex align-items-center">
+                    <span class="status-dot {% if profile.is_online %}online{% else %}offline{% endif %}"></span>
+                    <b class="ml-2">{% if profile.is_online %}Connecté{% else %}Hors ligne{% endif %}</b>
+                  </div>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
-
-    <!-- Page content -->
-    <div class="container-fluid mt--6">
-      <div class="row">
-        <div class="col-xl-8">
-          <div class="card bg-default">
-            <div class="card-header bg-transparent">
-              <div class="row align-items-center">
-                <div class="col">
-                  <h6 class="text-light text-uppercase ls-1 mb-1">Overview</h6>
-                  <h5 class="h3 text-white mb-0">Sales value</h5>
-                </div>
-                <div class="col">
-                  <ul class="nav nav-pills justify-content-end">
-                    <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales-dark" data-update='{"data":{"datasets":[{"data":[0, 20, 10, 30, 15, 40, 20, 60, 60]}]}}' data-prefix="$" data-suffix="k">
-                      <a href="#" class="nav-link py-2 px-3 active" data-toggle="tab">
-                        <span class="d-none d-md-block">Month</span>
-                        <span class="d-md-none">M</span>
-                      </a>
-                    </li>
-                    <li class="nav-item" data-toggle="chart" data-target="#chart-sales-dark" data-update='{"data":{"datasets":[{"data":[0, 20, 5, 25, 10, 30, 15, 40, 40]}]}}' data-prefix="$" data-suffix="k">
-                      <a href="#" class="nav-link py-2 px-3" data-toggle="tab">
-                        <span class="d-none d-md-block">Week</span>
-                        <span class="d-md-none">W</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <!-- Chart -->
-              <div class="chart">
-                <!-- Chart wrapper -->
-                <canvas id="chart-sales-dark" class="chart-canvas"></canvas>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-4">
-          <div class="card">
-            <div class="card-header bg-transparent">
-              <div class="row align-items-center">
-                <div class="col">
-                  <h6 class="text-uppercase text-muted ls-1 mb-1">Performance</h6>
-                  <h5 class="h3 mb-0">Total orders</h5>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <!-- Chart -->
-              <div class="chart">
-                <canvas id="chart-bars" class="chart-canvas"></canvas>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xl-8">
-          <div class="card">
-            <div class="card-header border-0">
-              <div class="row align-items-center">
-                <div class="col">
-                  <h3 class="mb-0">Page visits</h3>
-                </div>
-                <div class="col text-right">
-                  <a href="#!" class="btn btn-sm btn-primary">See all</a>
-                </div>
-              </div>
-            </div>
-            <div class="table-responsive">
-              <!-- Projects table -->
-              <table class="table align-items-center table-flush">
-                <thead class="thead-light">
-                  <tr>
-                    <th scope="col">Page name</th>
-                    <th scope="col">Visitors</th>
-                    <th scope="col">Unique users</th>
-                    <th scope="col">Bounce rate</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">
-                      /argon/
-                    </th>
-                    <td>
-                      4,569
-                    </td>
-                    <td>
-                      340
-                    </td>
-                    <td>
-                      <i class="fas fa-arrow-up text-success mr-3"></i> 46,53%
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      /argon/index.html
-                    </th>
-                    <td>
-                      3,985
-                    </td>
-                    <td>
-                      319
-                    </td>
-                    <td>
-                      <i class="fas fa-arrow-down text-warning mr-3"></i> 46,53%
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      /argon/charts.html
-                    </th>
-                    <td>
-                      3,513
-                    </td>
-                    <td>
-                      294
-                    </td>
-                    <td>
-                      <i class="fas fa-arrow-down text-warning mr-3"></i> 36,49%
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      /argon/tables.html
-                    </th>
-                    <td>
-                      2,050
-                    </td>
-                    <td>
-                      147
-                    </td>
-                    <td>
-                      <i class="fas fa-arrow-up text-success mr-3"></i> 50,87%
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      /argon/profile.html
-                    </th>
-                    <td>
-                      1,795
-                    </td>
-                    <td>
-                      190
-                    </td>
-                    <td>
-                      <i class="fas fa-arrow-down text-danger mr-3"></i> 46,53%
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-4">
-          <div class="card">
-            <div class="card-header border-0">
-              <div class="row align-items-center">
-                <div class="col">
-                  <h3 class="mb-0">Social traffic</h3>
-                </div>
-                <div class="col text-right">
-                  <a href="#!" class="btn btn-sm btn-primary">See all</a>
-                </div>
-              </div>
-            </div>
-            <div class="table-responsive">
-              <!-- Projects table -->
-              <table class="table align-items-center table-flush">
-                <thead class="thead-light">
-                  <tr>
-                    <th scope="col">Referral</th>
-                    <th scope="col">Visitors</th>
-                    <th scope="col"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">
-                      Facebook
-                    </th>
-                    <td>
-                      1,480
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <span class="mr-2">60%</span>
-                        <div>
-                          <div class="progress">
-                            <div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      Facebook
-                    </th>
-                    <td>
-                      5,480
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <span class="mr-2">70%</span>
-                        <div>
-                          <div class="progress">
-                            <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      Google
-                    </th>
-                    <td>
-                      4,807
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <span class="mr-2">80%</span>
-                        <div>
-                          <div class="progress">
-                            <div class="progress-bar bg-gradient-primary" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      Instagram
-                    </th>
-                    <td>
-                      3,678
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <span class="mr-2">75%</span>
-                        <div>
-                          <div class="progress">
-                            <div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      twitter
-                    </th>
-                    <td>
-                      2,645
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <span class="mr-2">30%</span>
-                        <div>
-                          <div class="progress">
-                            <div class="progress-bar bg-gradient-warning" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {% include "includes/footer.html" %}
-
-    </div>
-
+  </div>
+</div>
+{% include "includes/footer.html" %}
 {% endblock content %}
 
-<!-- Specific JS goes HERE --> 
+<!-- Specific JS goes HERE -->
 {% block javascripts %}
 
-  <script src="/static/assets/vendor/chart.js/dist/Chart.min.js"></script>
-  <script src="/static/assets/vendor/chart.js/dist/Chart.extension.js"></script>
+<script src="/static/assets/vendor/chart.js/dist/Chart.min.js"></script>
+<script src="/static/assets/vendor/chart.js/dist/Chart.extension.js"></script>
 
 {% endblock javascripts %}

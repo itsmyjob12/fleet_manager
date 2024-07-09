@@ -7,135 +7,60 @@
 
 {% block content %}
 
+
+
 <!-- Page content -->
-<div class="container mt--8 pb-5">
-  <!-- Table -->
-  <div class="row justify-content-center">
-    <div class="col-lg-6 col-md-8">
+<div class="d-flex align-items-center justify-content-center w-100">
+  <div class="row justify-content-center w-100">
+    <div class="col-md-8 col-lg-6 col-xl-4">
+      <div class="card mb-0">
+        <div class="card-body">
+          <a href="{% url 'home' %}" class="text-nowrap logo-img text-center d-block py-3 w-100">
+            <img src="/static/assets/img/brand/logo.png" width="180" alt="">
+          </a>
+          <form method="post" action="{% url 'register' %}">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="exampleInputtext1" class="form-label">Username</label>
+              <input type="text" class="form-control" id="exampleInputtext1" name="username"
+                aria-describedby="textHelp">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputtext1" class="form-label">Nom</label>
+              <input type="text" class="form-control" id="exampleInputtext1" name="lastname"
+                aria-describedby="textHelp">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputtext1" class="form-label">Prenom</label>
+              <input type="text" class="form-control" id="exampleInputtext1" name="firstname"
+                aria-describedby="textHelp">
+            </div>
 
-      <div class="card bg-secondary shadow border-0">
-        <div class="card-header bg-transparent pb-5">
-          <div class="text-muted text-center mt-2 mb-4">
-            Sign UP
-          </div>
-        </div>
-        <div class="card-body px-lg-5 py-lg-5">
-          <div class="text-center text-muted mb-4">
-
-            {% if msg %}
-            <small>{{ msg | safe }}</small>
-            {% else %}
-            Add your credentials
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" name="email"
+                aria-describedby="emailHelp">
+            </div>
+            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="role">
+              <option value="1">Administator</option>
+              <option value="2">Conducteur</option>
+            </select>
+            {% if messages %}
+            <div class="messages">
+              {% for message in messages %}
+              <div class="alert alert-success">{{ message }}</div>
+              {% endfor %}
+            </div>
             {% endif %}
 
-          </div>
+            <button type="submit" class="btn btn-primary w-100  fs-4 mb-4 rounded-2">Sign Up</button>
 
-          {% if not success %}
-
-          <form method="POST">
-
-            {% csrf_token %}
-
-            <div class="form-group">
-              <div class="input-group input-group-alternative mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
-                </div>
-                {{ form.username }}
-              </div>
-              <span class="text-error">
-                {% for error in form.username.errors %}
-                <small class="text-danger">{{ error }}</small><br>
-                {% endfor %}
-              </span>
-            </div>
-
-            <div class="form-group">
-              <div class="input-group input-group-alternative mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="ni ni-email-83"></i></span>
-                </div>
-                {{ form.email }}
-              </div>
-              <span class="text-error">
-                {% for error in form.email.errors %}
-                <small class="text-danger">{{ error }}</small><br>
-                {% endfor %}
-              </span>
-            </div>
-
-            <div class="form-group">
-              <div class="input-group input-group-alternative">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                </div>
-                {{ form.password1 }}
-              </div>
-              <span class="text-error">
-                {% for error in form.password1.errors %}
-                <small class="text-danger">{{ error }}</small><br>
-                {% endfor %}
-              </span>
-            </div>
-
-            <div class="form-group">
-              <div class="input-group input-group-alternative">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                </div>
-                {{ form.password2 }}
-              </div>
-              <span class="text-error">
-                {% for error in form.password2.errors %}
-                <small class="text-danger">{{ error }}</small><br>
-                {% endfor %}
-              </span>
-            </div>
-
-            <div class="form-group">
-              <div class="input-group input-group-alternative">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="ni ni-single-02"></i></span>
-                </div>
-                {{ form.role }}
-              </div>
-            </div>
-            <span class="text-error">{{ form.role.errors }}</span>
-
-            <div class="row my-4">
-              <div class="col-12">
-                <div class="custom-control custom-control-alternative custom-checkbox">
-                  <input class="custom-control-input" id="customCheckRegister" type="checkbox">
-                  <label class="custom-control-label" for="customCheckRegister">
-                    <span class="text-muted">I agree with the <a href="#!">Privacy Policy</a></span>
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div class="text-center">
-              <button type="submit" class="btn btn-primary mt-4">Create account</button>
-            </div>
           </form>
-
-          {% endif %}
 
         </div>
       </div>
-
     </div>
   </div>
-
-  <div class="row mt-3">
-    <div class="col-3"></div>
-    <div class="col-3">
-      <a href="{% url 'login' %}" class="text-light"><small>Login</small></a>
-    </div>
-    <div class="col-3 text-right">
-      <a href="https://appseed.us/support" class="text-light"><small>Get Support</small></a>
-    </div>
-  </div>
-
-</div>
 </div>
 
 {% endblock content %}
